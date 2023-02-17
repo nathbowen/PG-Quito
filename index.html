@@ -1,35 +1,79 @@
 <!DOCTYPE html>
 <html>
-  <head>
-	  <title>Ciudad Mitad del Mundo</title>
-  </head>
-  <body>
-	  <header>
-		  <h1>Ciudad Mitad del Mundo</h1>
-		  <img src="https://www.ecuador.com/wp-content/uploads/2019/09/mitad-del-mundo.jpg" alt="Ciudad Mitad del Mundo">
-	  </header>
-	  
-    <main>
-		  <h2>Atractivos Turísticos</h2>
-		  <ul>
-			  <li>Monumento a la Mitad del Mundo</li>
-			  <li>Museo Inti Ñan</li>
-			  <li>Cascada San Carlos</li>
-			  <li>Complejo Turístico Plaza Mitad del Mundo</li>
-		  </ul>
-		  <h2>Comida Típica</h2>
-		  <p>La gastronomía de la región es rica y variada, con platos típicos como:</p>
-		  <ul>
-			  <li>Hornado: cerdo asado acompañado de papas y mote</li>
-			  <li>Locro: sopa espesa de papas con maíz y queso</li>
-			  <li>Empanadas de viento: empanadas fritas rellenas de queso</li>
-			  <li>Churrasco: filete de carne asado acompañado de arroz, papas fritas y ensalada</li>
-		  </ul>
-		  <h2>Imágenes</h2>
-		  <img src="https://www.galapagos-islands-tourguide.com/wp-content/uploads/2020/04/mitad-del-mundo-ecuador.jpg" alt="Monumento a la Mitad del Mundo">
-		  <img src="https://www.cruisebe.com/sites/default/files/photos/tour_item_images/mitad-del-mundo-quito-ecuador.jpg" alt="Museo Inti Ñan">
-		  <img src="https://www.travelmag.com/wp-content/uploads/2017/11/san-carlos-waterfall.jpg" alt="Cascada San Carlos">
-		  <img src="https://www.viajaporquito.com/wp-content/uploads/2018/05/plaza-mitad-del-mundo.jpg" alt="Complejo Turístico Plaza Mitad del Mundo">
-	  </main>
-  </body>
+	<head>
+		<title>Ciudad Mitad del Mundo</title>
+		
+		<style>
+			body {background-color: black;}
+			h1 {
+				color: yellow;
+				font-family: verdana;
+				font-size: 300%;
+			}
+			p {
+				color: withe;
+				font-family: courier;
+				font-size: 160%;
+			}
+		</style>
+	</head>
+	
+	<body>
+		<header>
+			<h1>Ciudad Mitad del Mundo</h1>
+			<p>Quito, la primera ciudad declarada por la UNESCO Patrimonio Cultural de la Humanidad, está situada en la Cordillera de los Andes.</p>
+			<img src="https://www.ecuador.com/wp-content/uploads/2019/09/mitad-del-mundo.jpg" alt="Ciudad Mitad del Mundo">
+		</header>
+		
+		<main>
+			<h2>Información geográfica</h2>
+			<p>Quito es la segunda ciudad capital más alta del mundo a 2830 metros sobre el nivel del mar, tiene una superficie de 4.183 km² y alrededor de 2.2 millones de habitantes. La ciudad se ha desarrollado en el eje norte-sur (tiene más de 80 km de largo y 5 </p>
+			
+			<h2>Clima</h2>
+			<p>El clima de Quito es variable, con temperaturas que pueden ir de los 25 grados centígrados de día a los 10 grados en la noche y no es extraño que en un mismo día se combinen fuertes lluvias, temperaturas bajas y soles brillantes. </p>
+			
+			<h2>Atractivos turísticos más importantes</h2>
+			<ul>
+				<li>Monumento a la Mitad del Mundo</li>
+				<li>Museo Inti Ñan</li>
+				<li>Cascada San Carlos</li>
+				<li>Complejo Turístico Plaza Mitad del Mundo</li>
+			</ul>
+			
+			<h2>Comidas típicas</h2>
+			<p>La gastronomía de la región es rica y variada, con platos típicos como:</p>
+			<ul>
+				<li>Hornado: cerdo asado acompañado de papas y mote</li>
+				<li>Locro: sopa espesa de papas con maíz y queso</li>
+				<li>Empanadas de viento: empanadas fritas rellenas de queso</li>
+				<li>Churrasco: filete de carne asado acompañado de arroz, papas fritas y ensalada</li>
+			</ul>
+			
+			<h2>Imágenes</h2>
+			<img src="https://www.galapagos-islands-tourguide.com/wp-content/uploads/2020/04/mitad-del-mundo-ecuador.jpg" alt="Monumento a la Mitad del Mundo">
+			<img src="https://www.cruisebe.com/sites/default/files/photos/tour_item_images/mitad-del-mundo-quito-ecuador.jpg" alt="Museo Inti Ñan">
+			<img src="https://www.travelmag.com/wp-content/uploads/2017/11/san-carlos-waterfall.jpg" alt="Cascada San Carlos">
+			<img src="https://www.viajaporquito.com/wp-content/uploads/2018/05/plaza-mitad-del-mundo.jpg" alt="Complejo Turístico Plaza Mitad del Mundo">
+			
+			<h2>Calculadora de distacia a Quito</h2>
+			<p>Su ubicación actual: <span id="location"></span></p>
+			<p>Distancia a la mitad del mundo: <span id="distance"></span></p>
+			<script>
+				navigator.geolocation.getCurrentPosition(function (position) {
+					var lat1 = position.coords.latitude;
+					var lon1 = position.coords.longitude;
+					var lat2 = -0.0102496 ;
+					var lon2 = -78.4464668;
+					var R = 6371; // Radio de la Tierra (km)
+					var dLat = (lat2 - lat1) * (Math.PI / 180);
+					var dLon = (lon2 - lon1) * (Math.PI / 180);
+					var a = Math.sin(dLat / 2) * Math.sin(dLat / 2) + Math.cos(lat1 * (Math.PI / 180)) * Math.cos(lat2 * (Math.PI / 180)) * Math.sin(dLon / 2) * Math.sin(dLon / 2);
+					var c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+					var d = R * c;
+					document.getElementById("location").innerHTML = lat1 + ", " + lon1;
+					document.getElementById("distance").innerHTML = d + " km";
+				});
+			</script>	
+		</main>
+	</body>
 </html>
